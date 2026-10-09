@@ -22,16 +22,20 @@ class Tree:
     
     At the end of tree manipulation, call `Tree.apply()` to sort the object's shape keys according to the tree.
     `Tree.apply()` will **not** automatically call `core.utils.hide()` or `core.utils.show()`.
+
+    Pass `obj` to capture another object's hierarchy, or `tree` to apply an already
+    constructed hierarchy without reading the object's current child counts.
     """
     
     active = None # type: Tree
     
-    def __init__(self):
-        self.tree = []
+    def __init__(self, obj=None, tree=None):
+        self.tree = tree if tree is not None else []
         self.cache = {}
         
-        if bpy.context.object and bpy.context.object.data.shape_keys:
-            self.tree = self._tree(bpy.context.object.data.shape_keys.key_blocks)
+        obj = bpy.context.object if obj is None else obj
+        if tree is None and obj and obj.data.shape_keys:
+            self.tree = self._tree(obj.data.shape_keys.key_blocks)
         
         self.forget()
     

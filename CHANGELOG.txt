@@ -1,3 +1,11 @@
+v2.2.2
+    - PATCH
+        - Renamed the add-on and its panel to "Facial-Shapekeys++" to distinguish this fork.
+        - Ctrl+J now preserves shape key folders when joining meshes, merging folders with
+            identical names and retaining nested hierarchies. Added "Join (Keep Shape Key Folders)"
+            to the Object and object context menus. The active mesh takes precedence for
+            conflicting parent assignments and folder settings.
+
 v2.2.0
     - MINOR
         • Reworked the face tracking auto-folder system: "Add ARKit Blend Shapes" now creates its shapes

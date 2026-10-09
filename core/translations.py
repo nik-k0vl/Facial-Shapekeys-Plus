@@ -10,7 +10,7 @@ with open(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__
 
 _strings_src = {
     # Generic
-    'Shape Keys+': "Shape Keys+",
+    'Shape Keys+': "Facial-Shapekeys++",
     'Folder': "Folder",
     'True': "True",
     'False': "False",
@@ -146,6 +146,10 @@ _strings_src = {
     'operators.FolderUngroup.bl_label': "Ungroup Folder",
     'operators.FolderUngroup.bl_description': "Delete this folder without deleting its children",
     
+    # shape_keys_plus/operators/object_join.py
+    'operators.Join.bl_label': "Join (Keep Shape Key Folders)",
+    'operators.Join.bl_description': "Join selected objects and merge shape key folders with identical names",
+
     # shape_keys_plus/operators/shape_key_add.py
     'operators.ShapeKeyAdd.bl_label': "Add Shape Key",
     'operators.ShapeKeyAdd.bl_description': "Adds new shape key to the object",
@@ -386,7 +390,7 @@ elif language == 'ja_JP':
     strings = deepcopy(_strings_src)
     
     # Generic
-    strings['Shape Keys+'] = "シェイプキープラス"
+    strings['Shape Keys+'] = "Facial-Shapekeys++"
     strings['Folder'] = "フォルダー"
     strings['True'] = "YES"
     strings['False'] = "NO"

@@ -4,6 +4,7 @@ from . import utils
 from . import key
 from . import folder
 from . import driver
+from . import join
 
 # Reference to bpy.context.scene.shape_keys_plus.
 settings = None

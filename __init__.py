@@ -7,13 +7,14 @@ from . import operators
 from . import menus
 from . import panels
 from . import properties
+from . import join_support
 
 bl_info = {
-    "name": "Facial-Shapekeys+",
+    "name": "Facial-Shapekeys++",
     "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 1),
+    "version": (2, 2, 2),
     "blender": (2, 93, 0),
-    "location": "Properties > Object Data > Shape Keys+",
+    "location": "Properties > Object Data > Facial-Shapekeys++",
     "description": "Adds a panel with extra options for creating, sorting, viewing, and driving shape keys.",
     "warning": "",
     "doc_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/wiki",
@@ -24,11 +25,11 @@ bl_info = {
 # bl_info is parsed before the add-on is loaded, so its translations have to be copied by hand or a script.
 
 bl_info_en_US = {
-    "name": "Facial-Shapekeys+",
+    "name": "Facial-Shapekeys++",
     "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 1),
+    "version": (2, 2, 2),
     "blender": (2, 93, 0),
-    "location": "Properties > Object Data > Shape Keys+",
+    "location": "Properties > Object Data > Facial-Shapekeys++",
     "description": "Adds a panel with extra options for creating, sorting, viewing, and driving shape keys.",
     "warning": "",
     "doc_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/wiki",
@@ -36,11 +37,11 @@ bl_info_en_US = {
     "category": "Object"
 }
 bl_info_ja_JP = {
-    "name": "Facial-Shapekeys+",
+    "name": "Facial-Shapekeys++",
     "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 1),
+    "version": (2, 2, 2),
     "blender": (2, 93, 0),
-    "location": "プロパティ ⇒ オブジェクトデータ ⇒ シェイプキー+",
+    "location": "プロパティ ⇒ オブジェクトデータ ⇒ Facial-Shapekeys++",
     "description": "シェイプキーの作成、整理、表示、操作を行うための追加オプションを備えたパネルを追加します。",
     "warning": "",
     "doc_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/wiki",
@@ -415,6 +416,7 @@ classes = (
     operators.FolderMutate,
     operators.FolderToggle,
     operators.FolderUngroup,
+    operators.Join,
     operators.ShapeKeyAdd,
     operators.ShapeKeyAddARKit,
     operators.ShapeKeyAddUnifiedExpressions,
@@ -470,6 +472,8 @@ def register():
         type=properties.KeyProperties, name=core.strings['Shape Keys+'])
     
     core.preferences = bpy.context.preferences.addons[__name__].preferences
+
+    join_support.register()
     
     default_panel_exists = hasattr(bpy.types, 'DATA_PT_shape_keys')
     
@@ -486,6 +490,8 @@ def register():
 
 
 def unregister():
+    join_support.unregister()
+
     for cls in classes[::-1]:
         bpy.utils.unregister_class(cls)
     

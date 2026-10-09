@@ -4,6 +4,7 @@ from .folder_icon import OBJECT_OT_skp_default_folder_icon as DefaultFolderIcon
 from .folder_mutate import OBJECT_OT_skp_folder_mutate as FolderMutate
 from .folder_toggle import OBJECT_OT_skp_folder_toggle as FolderToggle
 from .folder_ungroup import OBJECT_OT_skp_folder_ungroup as FolderUngroup
+from .object_join import OBJECT_OT_skp_join as Join
 from .shape_key_add import OBJECT_OT_skp_shape_key_add as ShapeKeyAdd
 from .shape_key_copy import OBJECT_OT_skp_shape_key_copy as ShapeKeyCopy
 from .shape_key_face_tracking import OBJECT_OT_skp_shape_key_add_arkit as ShapeKeyAddARKit

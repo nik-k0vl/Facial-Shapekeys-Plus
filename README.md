@@ -1,4 +1,4 @@
-# Facial Shapekeys+
+# Facial-Shapekeys++
 
 A fork of [ShapeKeys+](https://github.com/MichaelGlenMontague/shape_keys_plus) with a big focus on improving the automatization and workflow on Face Tracking blendshapes (ARKit and UE)
 
@@ -8,7 +8,7 @@ Automatically hides the default ***Shape Keys*** panel, which can be enabled aga
 
 ---
 # Overview
-Facial Shapekeys+ focuses on automatically adding useful list of blendshapes for VRChat and Vtubing, such as creating the Visemes folder, as well as ARKit, Unified Expressions and Blended shapes for Face Tracking. 
+Facial-Shapekeys++ focuses on automatically adding useful list of blendshapes for VRChat and Vtubing, such as creating the Visemes folder, as well as ARKit, Unified Expressions and Blended shapes for Face Tracking.
 
 And you read that right! it uses the folder system made by ShapeKeys+, allowing you to collapse or expand the list, and keep everything tiny and easy to access or move.
 
@@ -51,6 +51,15 @@ Allows you to quickly remove ALL shapekeys
 - **Folders**
 > Manage shape keys with folders.
 
+With the add-on enabled, **Ctrl+J** merges equally named shape key folders when joining meshes,
+including nested folders and joins of more than two meshes. You can also use **Join (Keep Shape Key
+Folders)** in the Object menu or the right-click context menu. Names must match exactly; `Folder_1`
+and `Folder_1.001` remain separate. When the same key or folder has different parents, the active
+mesh's hierarchy takes precedence, followed by the other meshes. Its folder icons and open/closed
+state are retained. Blender still merges equally named blendshapes into a single shape key.
+The original **Join** menu entry and scripts calling `bpy.ops.object.join()` use Blender's native
+join; scripts can use `bpy.ops.object.skp_join()` to preserve folders.
+
 - **Shape Key Placement**
 > Control where shape keys are automatically placed after specific operations.
 
@@ -61,7 +70,7 @@ Allows you to quickly remove ALL shapekeys
 > Perform basic operations on multiple shape keys and folders at once. Compatible with “New Combined” as it creates a new shape out of a mix of the selected shape keys, even if some of them currently have a value of 0. Features compatible with multi-selection become exposed when at least one shape key or folder is selected.
 
 - **Driver Sub-Panel**
-> View and edit the driver for a shape key’s value directly within the Shape Keys+ panel.
+> View and edit the driver for a shape key’s value directly within the Facial-Shapekeys++ panel.
 
 - **Manual Translation**
 > All UI elements are set up for manual translation, with the two current languages being English and Japanese. The language can be configured at any time simply by changing the language property in the shape_keys_plus/config.ini file and restarting Blender.
