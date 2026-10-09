@@ -159,7 +159,8 @@ def select(i, v):
     i = str(i)
     
     if v:
-        core.utils.get(selections, i, selections.add()).name = i
+        if i not in selections:
+            selections.add().name = i
     else:
         while i in selections:
             selections.remove(selections.find(i))

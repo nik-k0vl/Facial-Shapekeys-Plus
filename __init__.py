@@ -12,7 +12,7 @@ from . import join_support
 bl_info = {
     "name": "Facial-Shapekeys++",
     "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 2),
+    "version": (2, 2, 3),
     "blender": (2, 93, 0),
     "location": "Properties > Object Data > Facial-Shapekeys++",
     "description": "Adds a panel with extra options for creating, sorting, viewing, and driving shape keys.",
@@ -27,7 +27,7 @@ bl_info = {
 bl_info_en_US = {
     "name": "Facial-Shapekeys++",
     "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 2),
+    "version": (2, 2, 3),
     "blender": (2, 93, 0),
     "location": "Properties > Object Data > Facial-Shapekeys++",
     "description": "Adds a panel with extra options for creating, sorting, viewing, and driving shape keys.",
@@ -39,7 +39,7 @@ bl_info_en_US = {
 bl_info_ja_JP = {
     "name": "Facial-Shapekeys++",
     "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 2),
+    "version": (2, 2, 3),
     "blender": (2, 93, 0),
     "location": "プロパティ ⇒ オブジェクトデータ ⇒ Facial-Shapekeys++",
     "description": "シェイプキーの作成、整理、表示、操作を行うための追加オプションを備えたパネルを追加します。",
@@ -250,6 +250,10 @@ class MESH_UL_shape_keys_plus(bpy.types.UIList):
                 emboss=False)
         
         if index > 0:
+            # Checkbox selection remains available when the key's editing controls are dimmed.
+            selection_row = layout.row(align=True)
+            selection_row.alignment = 'RIGHT'
+            selection_row.operator_context = 'INVOKE_DEFAULT'
             if selected:
                 icon = 'CHECKBOX_HLT'
             elif parent_selected:
@@ -257,7 +261,7 @@ class MESH_UL_shape_keys_plus(bpy.types.UIList):
             else:
                 icon = 'CHECKBOX_DEHLT'
             
-            op = buttons.operator(
+            op = selection_row.operator(
                 operator='object.skp_shape_key_select',
                 text="",
                 icon=icon,

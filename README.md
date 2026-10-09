@@ -69,6 +69,10 @@ join; scripts can use `bpy.ops.object.skp_join()` to preserve folders.
 - **Multi-Selection**
 > Perform basic operations on multiple shape keys and folders at once. Compatible with “New Combined” as it creates a new shape out of a mix of the selected shape keys, even if some of them currently have a value of 0. Features compatible with multi-selection become exposed when at least one shape key or folder is selected.
 
+Check one shape key's checkbox, then **Shift+click** another checkbox to select both keys and
+every key between them. Other checked keys stay selected, and further Shift+clicks use the
+original starting checkbox. A normal click toggles one checkbox and sets a new starting point.
+
 - **Driver Sub-Panel**
 > View and edit the driver for a shape key’s value directly within the Facial-Shapekeys++ panel.
 

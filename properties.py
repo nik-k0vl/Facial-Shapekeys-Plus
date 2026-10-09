@@ -85,6 +85,8 @@ class KeyProperties(bpy.types.PropertyGroup):
     # UIList (including its checkbox) updates `active_shape_key_index` via Blender's own row-click
     # handling before our operator even runs - so it can't be used as a reliable Shift/Ctrl+Click anchor.
     select_anchor: bpy.props.IntProperty(default=-1)
+    # Names retain the anchor when keys are reordered; keep the old index for compatibility.
+    select_anchor_name: bpy.props.StringProperty(default="", options={'HIDDEN', 'SKIP_SAVE'})
     
     copy_customization: bpy.props.PointerProperty(
         type=CopyCustomization,

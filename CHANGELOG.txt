@@ -1,3 +1,12 @@
+v2.2.3
+    - PATCH
+        - Shift+Click on a selection checkbox selects every shape key between it and the
+            starting checkbox, including both endpoints, without clearing existing selections.
+            Further Shift+Clicks retain the original anchor, including after reordering keys.
+        - Kept selection checkboxes interactive when other row controls are dimmed and explicitly
+            invoked their operator so mouse modifiers are available.
+        - Prevented repeated selection from adding duplicate entries to the selection collection.
+
 v2.2.2
     - PATCH
         - Renamed the add-on and its panel to "Facial-Shapekeys++" to distinguish this fork.
