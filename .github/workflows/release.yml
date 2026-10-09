@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing version tag to release, e.g. v2.2.4'
+        description: 'Existing release version or tag, e.g. 2.2.4 or v2.2.4'
         required: true
         type: string
 
@@ -20,19 +20,30 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: write
-    env:
-      RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
     steps:
+      - name: Resolve release tag
+        id: version
+        env:
+          REQUESTED_TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          if [[ ! "$REQUESTED_TAG" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Enter a version such as 2.2.4 or v2.2.4."
+            exit 1
+          fi
+          printf 'tag=v%s\n' "${REQUESTED_TAG#v}" >> "$GITHUB_OUTPUT"
+
       - name: Check out release tag
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          ref: ${{ env.RELEASE_TAG }}
+          ref: ${{ steps.version.outputs.tag }}
           persist-credentials: false
 
       - name: Test package builder
         run: python3 -m unittest discover -s tests -p test_build_release.py
 
       - name: Build and validate add-on ZIP
+        env:
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
           python3 scripts/build_release.py --tag "$RELEASE_TAG"
           test -f "releases/${RELEASE_TAG}.md"
@@ -41,6 +52,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
           gh release create "$RELEASE_TAG" Facial-Shapekeys-Plus.zip \
             --verify-tag \

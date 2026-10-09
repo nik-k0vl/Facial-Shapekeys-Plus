@@ -139,4 +139,5 @@ git push --atomic origin master vX.Y.Z
 
 The **Release add-on** GitHub Actions workflow checks the version, builds the ZIP, and publishes
 a release with that ZIP attached. It uses GitHub's built-in token; no additional secrets are
-required. The workflow also supports manual runs for an existing version tag.
+required. The workflow also supports manual runs for an existing version tag, accepting
+both `X.Y.Z` and `vX.Y.Z` in the tag input.
