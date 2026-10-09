@@ -1,3 +1,15 @@
+v2.2.4
+    - PATCH
+        - Credited MooshPaw and xonxt as fork maintainers with AI-coded contributions in the add-on metadata.
+            Shortened Blender's single-line Maintainer field and displayed full credits on three
+            separate lines in the add-on preferences. Updated help and issue links for this fork.
+        - Added a reproducible ZIP build script and a tag-triggered GitHub release workflow.
+        - Added Sort Selected A to Z and Sort Selected Z to A to the downward-arrow menu.
+            Sorting requires at least two checked keys and ignores capitalization.
+        - Scattered selections keep their sibling positions; each folder is sorted separately.
+            Selected folders move with their contents. Preserved checkbox selections,
+            the active key, the Basis, and the Shift-click starting key.
+
 v2.2.3
     - PATCH
         - Shift+Click on a selection checkbox selects every shape key between it and the

@@ -1,0 +1,48 @@
+name: Release add-on
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing version tag to release, e.g. v2.2.4'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+          persist-credentials: false
+
+      - name: Test package builder
+        run: python3 -m unittest discover -s tests -p test_build_release.py
+
+      - name: Build and validate add-on ZIP
+        run: |
+          python3 scripts/build_release.py --tag "$RELEASE_TAG"
+          test -f "releases/${RELEASE_TAG}.md"
+
+      - name: Publish release with installable ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "$RELEASE_TAG" Facial-Shapekeys-Plus.zip \
+            --verify-tag \
+            --title "Facial-Shapekeys++ ${RELEASE_TAG}" \
+            --notes-file "releases/${RELEASE_TAG}.md"

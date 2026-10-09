@@ -11,14 +11,14 @@ from . import join_support
 
 bl_info = {
     "name": "Facial-Shapekeys++",
-    "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 3),
+    "author": "Michael Glen Montague, MooshPaw (AI-coded), xonxt (AI-coded)",
+    "version": (2, 2, 4),
     "blender": (2, 93, 0),
     "location": "Properties > Object Data > Facial-Shapekeys++",
     "description": "Adds a panel with extra options for creating, sorting, viewing, and driving shape keys.",
     "warning": "",
-    "doc_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/wiki",
-    "tracker_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/issues",
+    "doc_url": "https://github.com/nik-k0vl/Facial-Shapekeys-Plus#readme",
+    "tracker_url": "https://github.com/nik-k0vl/Facial-Shapekeys-Plus/issues",
     "category": "Object"
 }
 
@@ -26,26 +26,26 @@ bl_info = {
 
 bl_info_en_US = {
     "name": "Facial-Shapekeys++",
-    "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 3),
+    "author": "Michael Glen Montague, MooshPaw (AI-coded), xonxt (AI-coded)",
+    "version": (2, 2, 4),
     "blender": (2, 93, 0),
     "location": "Properties > Object Data > Facial-Shapekeys++",
     "description": "Adds a panel with extra options for creating, sorting, viewing, and driving shape keys.",
     "warning": "",
-    "doc_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/wiki",
-    "tracker_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/issues",
+    "doc_url": "https://github.com/nik-k0vl/Facial-Shapekeys-Plus#readme",
+    "tracker_url": "https://github.com/nik-k0vl/Facial-Shapekeys-Plus/issues",
     "category": "Object"
 }
 bl_info_ja_JP = {
     "name": "Facial-Shapekeys++",
-    "author": "MooshPaw - Michael Glen Montague",
-    "version": (2, 2, 3),
+    "author": "Michael Glen Montague, MooshPaw (AI-coded), xonxt (AI-coded)",
+    "version": (2, 2, 4),
     "blender": (2, 93, 0),
     "location": "プロパティ ⇒ オブジェクトデータ ⇒ Facial-Shapekeys++",
     "description": "シェイプキーの作成、整理、表示、操作を行うための追加オプションを備えたパネルを追加します。",
     "warning": "",
-    "doc_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/wiki",
-    "tracker_url": "https://github.com/MooshPaw/Facial-Shapekeys-Plus/issues",
+    "doc_url": "https://github.com/nik-k0vl/Facial-Shapekeys-Plus#readme",
+    "tracker_url": "https://github.com/nik-k0vl/Facial-Shapekeys-Plus/issues",
     "category": "Object"
 }
 
@@ -94,6 +94,14 @@ class AddonPreferences(bpy.types.AddonPreferences):
     def draw(self, context):
         layout = self.layout
         icon_pair = core.folder.get_icon_pair(self.default_folder_icon_pair)
+
+        credits = layout.box()
+        credits.label(text=core.strings['AddonPreferences.draw.label[Credits]'], translate=False)
+        for credit in (
+                "Michael Glen Montague: original author",
+                "MooshPaw: maintainer; AI-coded contributions",
+                "xonxt: maintainer; AI-coded contributions"):
+            credits.label(text=credit, translate=False)
         
         row = layout.row()
         row.alignment = 'RIGHT'
@@ -433,6 +441,7 @@ classes = (
     operators.ShapeKeyParent,
     operators.ShapeKeyRemove,
     operators.ShapeKeySelect,
+    operators.ShapeKeySort,
     operators.VariableAdd,
     operators.VariableCopy,
     operators.VariableMove,

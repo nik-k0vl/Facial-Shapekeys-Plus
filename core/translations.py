@@ -11,6 +11,7 @@ with open(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__
 _strings_src = {
     # Generic
     'Shape Keys+': "Facial-Shapekeys++",
+    'AddonPreferences.draw.label[Credits]': "Credits",
     'Folder': "Folder",
     'True': "True",
     'False': "False",
@@ -98,6 +99,8 @@ _strings_src = {
     'menus.ShapeKeyOtherContextMenu.draw.menu[Set Parent...]': "Set Parent...",
     'menus.ShapeKeyOtherContextMenu.draw.operator[Mirror Shape Key]': "Mirror Shape Key",
     'menus.ShapeKeyOtherContextMenu.draw.operator[Mirror Shape Key (Topology)]': "Mirror Shape Key (Topology)",
+    'menus.ShapeKeyOtherContextMenu.draw.operator[Sort Selected A to Z]': "Sort Selected A to Z",
+    'menus.ShapeKeyOtherContextMenu.draw.operator[Sort Selected Z to A]': "Sort Selected Z to A",
     
     # shape_keys_plus/menus/shape_key_parent.py
     'menus.ShapeKeyParent.bl_label': "Set Parent",
@@ -235,6 +238,14 @@ _strings_src = {
     # shape_keys_plus/operators/shape_key_select.py
     'operators.ShapeKeySelect.bl_label': "Select/Deselect Shape Key",
     'operators.ShapeKeySelect.bl_description': "Select this shape key",
+
+    # shape_keys_plus/operators/shape_key_sort.py
+    'operators.ShapeKeySort.bl_label': "Sort Selected Shape Keys",
+    'operators.ShapeKeySort.bl_description':
+        "Sort checked shape keys by name within their current folders, keeping unselected sibling positions",
+    'operators.ShapeKeySort.order.name': "Order",
+    'operators.ShapeKeySort.order.items[ASCENDING].name': "Ascending (A to Z)",
+    'operators.ShapeKeySort.order.items[DESCENDING].name': "Descending (Z to A)",
     
     # shape_keys_plus/operators/variable_add.py
     'operators.VariableAdd.bl_label': "Add Variable",

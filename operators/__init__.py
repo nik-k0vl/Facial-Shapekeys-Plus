@@ -19,6 +19,7 @@ from .shape_key_move import OBJECT_OT_skp_shape_key_move as ShapeKeyMove
 from .shape_key_parent import OBJECT_OT_skp_shape_key_parent as ShapeKeyParent
 from .shape_key_remove import OBJECT_OT_skp_shape_key_remove as ShapeKeyRemove
 from .shape_key_select import OBJECT_OT_skp_shape_key_select as ShapeKeySelect
+from .shape_key_sort import OBJECT_OT_skp_shape_key_sort as ShapeKeySort
 from .variable_add import DRIVER_OT_skp_variable_add as VariableAdd
 from .variable_copy import DRIVER_OT_skp_variable_copy as VariableCopy
 from .variable_move import DRIVER_OT_skp_variable_move as VariableMove

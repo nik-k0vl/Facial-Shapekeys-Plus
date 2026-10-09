@@ -146,6 +146,33 @@ class Tree:
         
         self.forget()
     
+    def sort_selected(self, names, reverse=False):
+        """Sort checked siblings in their existing slots, moving folders as whole branches."""
+        selected = set(names)
+
+        def sort_branch(branch):
+            positions = []
+            # Index 0 is the Basis at the root, or the folder's own name below it.
+            for index in range(1, len(branch)):
+                item = branch[index]
+                if isinstance(item, list):
+                    sort_branch(item)
+                    name = item[0]
+                else:
+                    name = item
+                if name in selected:
+                    positions.append(index)
+
+            ordered = sorted(
+                (branch[index] for index in positions),
+                key=lambda item: (item[0] if isinstance(item, list) else item).casefold(),
+                reverse=reverse)
+            for index, item in zip(positions, ordered):
+                branch[index] = item
+
+        sort_branch(self.tree)
+        self.forget()
+
     def reinsert(self, a, b=None):
         if a == b:
             return

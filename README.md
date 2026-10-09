@@ -6,6 +6,9 @@ Add-on made for [Blender](https://www.blender.org/) which adds a panel containin
 
 Automatically hides the default ***Shape Keys*** panel, which can be enabled again via the add-on's preferences. 
 
+Install **Facial-Shapekeys-Plus.zip** from the [GitHub releases](https://github.com/nik-k0vl/Facial-Shapekeys-Plus/releases)
+through Blender Preferences > Add-ons, then enable **Facial-Shapekeys++**. Restart Blender after an update.
+
 ---
 # Overview
 Facial-Shapekeys++ focuses on automatically adding useful list of blendshapes for VRChat and Vtubing, such as creating the Visemes folder, as well as ARKit, Unified Expressions and Blended shapes for Face Tracking.
@@ -73,6 +76,14 @@ Check one shape key's checkbox, then **Shift+click** another checkbox to select 
 every key between them. Other checked keys stay selected, and further Shift+clicks use the
 original starting checkbox. A normal click toggles one checkbox and sets a new starting point.
 
+Use **Sort Selected A to Z** or **Sort Selected Z to A** in the downward-arrow menu to sort
+checked keys alphabetically, ignoring capitalization. At least two checked keys are required.
+Scattered selections are sorted in their existing positions, leaving unchecked siblings in place.
+Each parent folder is sorted separately, so keys keep their folder membership. Selected folders
+move with their contents as a single block; their unchecked contents keep their order. Because
+folder blocks can differ in size, row numbers may change when folders are reordered. The Basis,
+active key, checkbox selections, and Shift-click starting key are preserved.
+
 - **Driver Sub-Panel**
 > View and edit the driver for a shape key’s value directly within the Facial-Shapekeys++ panel.
 
@@ -90,6 +101,8 @@ original starting checkbox. A normal click toggles one checkbox and sets a new s
 ---
 # AI Disclaimer
 
+Fork maintainers MooshPaw and xonxt use AI-generated code for their contributions.
+
 YES, I know
 
 If you don't like AI, feel free to fork this and redo the code yourself, or try to implement the new features from the original add-on. I'm a designer, not a programmer, even though I helped with simple things such as the Blendshape list for each nomenclature, 95% of the modifications are made by Claude, as I can't find anyone who would do these features quick enough, and the original repo has been archived.
@@ -101,3 +114,29 @@ Despite the AI, this would not have been possible without the original work from
 ---
 # Credits
 [MichaelGlenMontague](https://github.com/MichaelGlenMontague) - Original work on [Shapekeys+](https://github.com/MichaelGlenMontague/shape_keys_plus) from which this project is based on
+
+[MooshPaw](https://github.com/MooshPaw) - Fork maintainer; AI-coded contributions.
+
+xonxt - Fork maintainer; AI-coded contributions.
+
+Blender's built-in Maintainer field uses a single line. Full credits appear on three separate
+lines in the add-on preferences.
+
+## Building and publishing releases
+
+Run `python scripts/build_release.py` to rebuild the installable ZIP in the repository root.
+The script includes only runtime files, configuration, and the license, with a stable package
+folder name and reproducible contents across Windows and Linux.
+
+To publish a new version, update all three `bl_info` versions and the changelog, add release notes
+at `releases/vX.Y.Z.md`, and commit the changes. Validate the package with
+`python scripts/build_release.py --tag vX.Y.Z`, then push the commit and its matching tag:
+
+```sh
+git tag -a vX.Y.Z -m "Release vX.Y.Z"
+git push --atomic origin master vX.Y.Z
+```
+
+The **Release add-on** GitHub Actions workflow checks the version, builds the ZIP, and publishes
+a release with that ZIP attached. It uses GitHub's built-in token; no additional secrets are
+required. The workflow also supports manual runs for an existing version tag.

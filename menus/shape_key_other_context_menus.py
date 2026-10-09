@@ -21,6 +21,22 @@ class MESH_MT_skp_shape_key_other_context_menu(bpy.types.Menu):
             
             layout.separator()
         
+        op = layout.operator(
+            operator='object.skp_shape_key_sort',
+            text=core.strings['menus.ShapeKeyOtherContextMenu.draw.operator[Sort Selected A to Z]'],
+            translate=False,
+            icon='SORTALPHA')
+        op.order = 'ASCENDING'
+
+        op = layout.operator(
+            operator='object.skp_shape_key_sort',
+            text=core.strings['menus.ShapeKeyOtherContextMenu.draw.operator[Sort Selected Z to A]'],
+            translate=False,
+            icon='SORTALPHA')
+        op.order = 'DESCENDING'
+
+        layout.separator()
+
         active_key = context.object.active_shape_key
         is_active_folder = active_key and core.key.is_folder(active_key)
         
